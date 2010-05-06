@@ -796,7 +796,7 @@ c['builders'] = [{'name': 'flagcolor', 'slavename': 'bot1',
     def testChangeProp(self):
         def _check(res):
             self.failUnlessEqual(self.getFlag('testresult'),
-                'color=blue sched=mysched prop1=prop1')
+                'color=red sched=mysched prop1=prop1')
         return self.setupTest(self.config_changeprop, ['flagcolor'], _check,
                               changeProps={'color': 'blue', 'prop1': 'prop1'})
 
