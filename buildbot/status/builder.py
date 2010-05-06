@@ -1590,13 +1590,13 @@ class BuilderStatus(styles.Versioned):
     def reconfigFromBuildmaster(self, buildmaster):
         # Note that we do not hang onto the buildmaster, since this object
         # gets pickled and unpickled.
-        if buildmaster.buildCacheSize:
+        if buildmaster.buildCacheSize is not None:
             self.buildCacheSize = buildmaster.buildCacheSize
-        if buildmaster.eventHorizon:
+        if buildmaster.eventHorizon is not None:
             self.eventHorizon = buildmaster.eventHorizon
-        if buildmaster.logHorizon:
+        if buildmaster.logHorizon is not None:
             self.logHorizon = buildmaster.logHorizon
-        if buildmaster.buildHorizon:
+        if buildmaster.buildHorizon is not None:
             self.buildHorizon = buildmaster.buildHorizon
 
     def upgradeToVersion1(self):
