@@ -1,5 +1,6 @@
 
 import urlparse, urllib, time, re
+from itertools import count
 from zope.interface import Interface
 from twisted.python import log
 from twisted.web import html, resource
@@ -123,6 +124,8 @@ def make_force_build_form(forceURL, useUserPasswd, on_all=False):
       + make_extra_property_row(1)
       + make_extra_property_row(2)
       + make_extra_property_row(3)
+      + make_extra_property_row(4)
+      + make_extra_property_row(5)
       + '<input type="submit" value="Force Build" /></form>\n')
 
 def getAndCheckProperties(req):
@@ -133,7 +136,7 @@ Check the names for valid strings, and return None if a problem is found.
 Return a new Properties object containing each property found in req.
 """
     properties = Properties()
-    for i in (1,2,3):
+    for i in count(1):
         pname = req.args.get("property%dname" % i, [""])[0]
         pvalue = req.args.get("property%dvalue" % i, [""])[0]
         if pname and pvalue:
@@ -142,6 +145,8 @@ Return a new Properties object containing each property found in req.
                 log.msg("bad property name='%s', value='%s'" % (pname, pvalue))
                 return None
             properties.setProperty(pname, pvalue, "Force Build Form")
+        else:
+            break
     return properties
 
 def td(text="", parms={}, **props):
