@@ -90,7 +90,7 @@ class Change:
         data += self.getFileContents()
         data += "At: %s\n" % self.getTime()
         data += "Changed By: %s\n" % self.who
-        data += "Comments: %s" % self.comments
+        data += "Comments: %s\n" % self.comments
         data += "Properties: \n%s\n\n" % self.getProperties()
         return data
 
